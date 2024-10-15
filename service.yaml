@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: 'k8s-microproject-service'
+spec:
+  selector: # Selection du pod
+    app: k8s-microproject
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 30000
+  type: LoadBalancer # LoadBalancer qui distribue la charge entre les pods
+
+  # ClusterIP: Service accessible uniquement à l'intérieur du cluster Kubernetes (par défaut)
+  # NodePort: Service accessible depuis l'extérieur du cluster via le port spécifié, compris entre (30000-32767)
+  # LoadBalancer: Service accessible depuis l'extérieur du cluster et distribue la charge entre les pods

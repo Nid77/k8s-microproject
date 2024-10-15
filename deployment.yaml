@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "k8s-microproject-deployment"
+spec:
+  replicas: 1 #Nombre de pod
+  selector: #Selection du pod
+    matchLabels: #Label de selection
+      app: k8s-microproject
+  template:
+    metadata: #Label appliquer au(x) pod
+      labels:
+        app: k8s-microproject #Label du pod
+    spec:
+      containers: #Container du pod
+        - name: "nid77-k8smicroproject"
+          image: nid77/k8s-microproject:latest
+          ports:
+            - containerPort: 3000
