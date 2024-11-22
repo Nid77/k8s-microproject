@@ -152,7 +152,15 @@ curl --resolve "<ingress-host>:80:<ingress-address>" -i http://<ingress-host>/
 
 > Docs: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-liveness-http-request
 
-- Your pods have a liveness probe set up
+
+To try the HTTP liveness check, create a Pod:
+```bash
+kubectl apply -f http-liveness.yaml
+```
+After 10 seconds, view Pod events to verify that liveness probes have failed and the container has been restarted:
+```bash
+kubectl describe pod liveness-http
+```
 
 #### HTTPS support
 
