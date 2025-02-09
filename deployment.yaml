@@ -15,6 +15,12 @@ spec:
       containers: #Container du pod
         - name: "nid77-k8smicroproject"
           image: nid77/k8s-microproject:latest
+          env:
+            - name: USER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-k8s-microproject
+                  key: user_name
           ports:
             - containerPort: 3000
           livenessProbe: #Vérification de l'état du pod
