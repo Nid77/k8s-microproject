@@ -175,7 +175,29 @@ livenessProbe:
 
 #### ConfigMaps
 
-- The environment variables required to operate the application are defined in a ConfigMap object and are properly passed to your deployments
+Define ConfigMap
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-k8s-microproject
+data:
+  user_name: "nid77"
+```
+
+Define the environment variable in "deployment.yaml"
+```
+spec:
+  containers:
+    ...
+    env:
+      - name: USER_NAME
+        valueFrom:
+          configMapKeyRef:
+            name: configmap-k8s-microproject
+            key: user_name
+    ...
+```
 
 #### StatefulSets
 
