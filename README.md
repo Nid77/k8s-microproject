@@ -166,15 +166,20 @@ livenessProbe:
 ```
 
 #### HTTPS support
-- ingress is accessible through https
-
+Generate the tls.key and tls.crt
 ```
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout tls.key -out tls.crt -subj "/CN=k8s-microproject.rayan"
 ```
 
+Create kubernetes Secret
 ```
 kubectl create secret tls secret-tls --cert=tls.crt --key=tls.key
+```
+
+Test connection with HTTPS without certifacte validation
+```
+ curl -k -i https://127.0.0.1 -H "Host: k8s-microproject.rayan"
 ```
 
 #### Persistence
