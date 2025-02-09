@@ -166,8 +166,16 @@ livenessProbe:
 ```
 
 #### HTTPS support
+- ingress is accessible through https
 
-- Your ingress is accessible through https
+```
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout tls.key -out tls.crt -subj "/CN=k8s-microproject.rayan"
+```
+
+```
+kubectl create secret tls secret-tls --cert=tls.crt --key=tls.key
+```
 
 #### Persistence
 
