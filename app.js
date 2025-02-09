@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const started = new Date();  // Enregistre l'heure de démarrage de l'application
 
 const fs = require("node:fs");
 
@@ -19,12 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.get('/healthz', (req, res) => {
-  const duration = (new Date() - started) / 1000;  
-  if (duration > 10) {
-    res.status(500).send(`error: ${duration}`); 
-  } else {
-    res.status(200).send('ok');
-  }
+  res.status(200).send('ok');
 });
 
 

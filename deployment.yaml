@@ -17,12 +17,12 @@ spec:
           image: nid77/k8s-microproject:latest
           ports:
             - containerPort: 3000
-          livenessProbe:
+          livenessProbe: #Vérification de l'état du pod
             httpGet:
               path: /healthz
               port: 3000
               httpHeaders:
-              - name: Custom-Header
-                value: Awesome
+                - name: Custom-Header
+                  value: Awesome
             initialDelaySeconds: 3
             periodSeconds: 3
