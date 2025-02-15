@@ -1,18 +1,25 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const dataDir = './data';
 
 const fs = require("node:fs");
+
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir);
+}
 
 app.get("/", (req, res) => {
   res.send("Hello, Kubernetes!");
   const name = process.env.USER_NAME || "name unset";
+  const podName = process.env.HOSTNAME || "unknown";
   const content = `Hello, ${name}! \n`;
-  fs.writeFile("./out.log", content, (err) => {
+  const file = `out-${podName}.log`;
+  fs.writeFile(`${dataDir}/${file}`, content, (err) => {
     if (err) {
       console.error(err);
     } else {
-      console.log("File written successfully");
+      console.log(`File ${file} written successfully`);
     }
   });
 });
