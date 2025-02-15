@@ -165,6 +165,11 @@ livenessProbe:
   periodSeconds: 3
 ```
 
+See health check in Event
+```
+kubectl describe pod <pod-name>
+```
+
 #### HTTPS support
 Generate the tls.key and tls.crt
 ```
@@ -175,6 +180,11 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 Create kubernetes Secret
 ```
 kubectl create secret tls secret-tls --cert=tls.crt --key=tls.key
+```
+
+Use ingress for https
+```
+kubectl apply -f ingress_https
 ```
 
 Test connection with HTTPS without certifacte validation
@@ -212,6 +222,11 @@ spec:
     ...
 ```
 
+Test envrionment variable
+```
+kubectl exec -it <pod-name> -- /bin/bash
+cat out.log
+```
 #### StatefulSets
 
 - Your application is deployed using a StatefulSet
