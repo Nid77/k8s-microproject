@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: statefulSet-k8s-microproject
+  name: statefulset-k8s-microproject
 spec:
   replicas: 2
   selector:
