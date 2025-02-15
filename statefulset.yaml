@@ -12,26 +12,26 @@ spec:
       labels:
         app: statefulset
     spec:
-      containers:
-        - name: "nid77-k8smicroproject-statefulset"
-              image: nid77/k8s-microproject:latest
-              env: #Variable d'environnement
-                - name: USER_NAME
-                  valueFrom:
-                    configMapKeyRef:
-                      name: configmap-k8s-microproject
-                      key: user_name
-                      optional: true
-              ports:
-                - containerPort: 3000
-        volumeMounts:
-        - name: data
-          mountPath: /data
+      containers: # Container du pod
+        - name: "nid77-k8smicroproject"
+          image: nid77/k8s-microproject:latest
+          env: # Variable d'environnement
+            - name: USER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-k8s-microproject
+                  key: user_name
+                  optional: true
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: data
+              mountPath: /data
   volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
