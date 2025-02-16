@@ -31,7 +31,7 @@ spec:
     - metadata:
         name: data
       spec:
-        accessModes: [ "ReadWriteMany" ] #Options pour que plusieurs pods peuvent lire et écrire dans le volume.
+        accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
             storage: 1Gi
