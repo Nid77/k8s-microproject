@@ -225,9 +225,32 @@ spec:
 Test envrionment variable
 ```
 kubectl exec -it <pod-name> -- /bin/bash
-cat out.log
+cat out-<pod-name>.log
 ```
 #### StatefulSets
+Deploy application using StatefulSets
 
-- Your application is deployed using a StatefulSet
-- A ConfigMap is used to pass any environment variables needed by your application
+```
+kubectl apply -f statefulset.yaml
+```
+
+Test stateful service
+```
+kubectl apply -f service_statefulset.yaml
+```
+```
+curl -H "Host: statefulset-k8s-microproject.rayan" http://127.0.0.1
+```
+See pods with ordered from {0..n-1} replicas
+```
+kubectl get pods
+```
+The output should be
+```
+NAME                                           READY   STATUS    RESTARTS   AGE
+..................................
+statefulset-k8s-microproject-0                 1/1     Running   0          21m
+statefulset-k8s-microproject-1                 1/1     Running   0          21m
+...................................
+```
+
