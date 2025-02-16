@@ -117,6 +117,9 @@ The output should be 'Hello, Kubernetes!'
 
 #### Step 5 - Create an ingress
 
+> [!WARNING]
+>  Open a new terminal with command "minikube tunnel"
+
 1. Write a `ingress.yaml` file describing your ingress
 
 ```yaml
