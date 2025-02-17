@@ -3,11 +3,11 @@ kind: PersistentVolumeClaim
 metadata:
   name: pvc-k8s-microproject
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
-  storageClassName: manual
-  volumeName: pv-k8s-microproject
+
 
