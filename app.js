@@ -5,6 +5,10 @@ const dataDir = './data';
 
 const fs = require("node:fs");
 
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir);
+}
+
 app.get("/", (req, res) => {
   res.send("Hello, Kubernetes!");
   const name = process.env.USER_NAME || "name unset";
