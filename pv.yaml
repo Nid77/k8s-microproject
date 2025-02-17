@@ -2,11 +2,9 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-k8s-microproject
-  labels:
-    type: local
 spec:
   capacity:
-    storage: 5Gi
+    storage: 1Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain  #Conserve les données après suppression
