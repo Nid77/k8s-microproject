@@ -10,6 +10,6 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  #persistentVolumeReclaimPolicy: Retain  #Conserve les données après suppression
+  persistentVolumeReclaimPolicy: Retain  #Conserve les données après suppression
   hostPath:
     path: "/data"
