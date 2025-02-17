@@ -38,6 +38,5 @@ spec:
               name: volume
       volumes:
         - name: volume
-          persistentVolumeClaim:
-            claimName: pvc-k8s-microproject
+          emptyDir: {}
 
