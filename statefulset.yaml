@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: statefulset-k8s-microproject
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: statefulset
+  template:
+    metadata:
+      labels:
+        app: statefulset
+    spec:
+      containers: # Container du pod
+        - name: "nid77-k8smicroproject"
+          image: nid77/k8s-microproject:latest
+          env: # Variable d'environnement
+            - name: USER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-k8s-microproject
+                  key: user_name
+                  optional: true
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: data
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi

@@ -117,6 +117,9 @@ The output should be 'Hello, Kubernetes!'
 
 #### Step 5 - Create an ingress
 
+> [!WARNING]
+>  Open a new terminal with command "minikube tunnel"
+
 1. Write a `ingress.yaml` file describing your ingress
 
 ```yaml
@@ -221,13 +224,42 @@ spec:
             key: user_name
     ...
 ```
+Apply config map
+```
+kubectl apply -f configmap.yaml
+```
 
 Test envrionment variable
 ```
 kubectl exec -it <pod-name> -- /bin/bash
-cat out.log
+cat out-<pod-name>.log
 ```
 #### StatefulSets
+Deploy application using StatefulSets
 
-- Your application is deployed using a StatefulSet
-- A ConfigMap is used to pass any environment variables needed by your application
+```
+kubectl apply -f statefulset.yaml
+```
+
+There should be pods ordered from 0 to n-1 replicas.
+```
+kubectl get pods
+```
+The output should look like :
+```
+NAME                                           READY   STATUS    RESTARTS   AGE
+..................................
+statefulset-k8s-microproject-0                 1/1     Running   0          21m
+statefulset-k8s-microproject-1                 1/1     Running   0          21m
+...................................
+```
+
+Test stateful service
+```
+kubectl apply -f service_statefulset.yaml
+```
+```
+curl -H "Host: statefulset-k8s-microproject.rayan" http://127.0.0.1
+```
+
+
