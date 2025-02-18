@@ -192,7 +192,7 @@ kubectl apply -f ingress_https
 
 Test connection with HTTPS without certifacte validation
 ```
- curl -k -i https://127.0.0.1 -H "Host: k8s-microproject.rayan"
+curl -k -i https://127.0.0.1 -H "Host: k8s-microproject.rayan"
 ```
 
 #### Persistence
@@ -254,11 +254,14 @@ Apply config map
 ```
 kubectl apply -f configmap.yaml
 ```
-
+Restart deployment 
+```
+kubectl rollout restart deployment
+```
 Test envrionment variable
 ```
-kubectl exec -it <pod-name> -- /bin/bash
-cat out-<pod-name>.log
+curl -i https://127.0.0.1 -H "Host: k8s-microproject.rayan"
+kubectl exec -it <pod-name> -- cat /data/out-<pod-name>.log
 ```
 The output should be 
 ```
