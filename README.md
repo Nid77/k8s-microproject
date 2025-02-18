@@ -295,4 +295,7 @@ kubectl apply -f service_statefulset.yaml
 curl -H "Host: statefulset-k8s-microproject.rayan" http://127.0.0.1
 ```
 
-
+Each pod have their own PV
+```
+kubectl get pv,pvc
+```
