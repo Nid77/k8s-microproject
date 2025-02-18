@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const dataDir = './data';
+const dataDir = '/data';
 
 const fs = require("node:fs");
 
