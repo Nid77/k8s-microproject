@@ -187,7 +187,13 @@ kubectl create secret tls secret-tls --cert=tls.crt --key=tls.key
 
 Use ingress for https
 ```
-kubectl apply -f ingress_https
+kubectl apply -f ingress_https.yaml
+```
+
+> [!WARNING]
+>  Don't forget to enable ingress addons
+```
+minikube addons enable ingress
 ```
 
 Test connection with HTTPS without certifacte validation
