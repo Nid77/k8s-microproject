@@ -226,14 +226,21 @@ Testing persistence :
 
 Create a log with request
 ```
-curl http://127.0.0.1 -H "Host: k8s-microproject.rayan"
+curl -H "Host: k8s-microproject.rayan" http://127.0.0.1 
 kubectl exec -it <pod-name> -- ls /data
 ```
-Delete pod and see data is always present
+Delete pod
 ```
 kubectl delete pod <pod-name>
+```
+See data is always present with new pod
+```
 kubectl get pods
 kubectl exec -it <pod-name> -- ls /data
+```
+The output should be
+```
+out-<pod-name>.log
 ```
 
 #### ConfigMaps
@@ -271,7 +278,7 @@ kubectl rollout restart deployment
 ```
 Test envrionment variable
 ```
-curl -i https://127.0.0.1 -H "Host: k8s-microproject.rayan"
+curl -i http://127.0.0.1 -H "Host: k8s-microproject.rayan"
 kubectl exec -it <pod-name> -- cat /data/out-<pod-name>.log
 ```
 The output should be 
