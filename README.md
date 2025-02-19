@@ -203,10 +203,6 @@ curl -k -i https://127.0.0.1 -H "Host: k8s-microproject.rayan"
 
 #### Persistence
 
-Use deployment for persistence
-```
-kubectl apply -f deployment_pv.yaml
-```
 
 PersistenceVolume
 ```
@@ -219,6 +215,10 @@ kubectl apply -f pvc.yaml
 See PV and PVC 
 ```
 kubectl get pv,pvc
+```
+Use deployment for persistence
+```
+kubectl apply -f deployment_pv.yaml
 ```
 
 
