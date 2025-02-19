@@ -212,15 +212,14 @@ PersistenceVolumeClaim
 ```
 kubectl apply -f pvc.yaml
 ```
-See PV and PVC 
-```
-kubectl get pv,pvc
-```
 Use deployment for persistence
 ```
 kubectl apply -f deployment_pv.yaml
 ```
-
+See PV and PVC 
+```
+kubectl get pv,pvc
+```
 
 Testing persistence :
 
